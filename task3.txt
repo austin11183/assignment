@@ -1,0 +1,9 @@
+1. function1 函數前面有一個星號 *，這是「生成器函數」，這個生成器有一個 next 方法，可以在執行的過程中暫停，然後在有需要的時候再繼續執行，而不是像我們平常看到的函數那樣一次全部執行完畢。
+   
+   在這個生成器函數裡面，我們可以使用 yield 來讓函數暫停。然後，當我們再次 call 生成器的 next 方法的時候，函數就會從上次暫停的地方繼續執行，直到它遇到下一個 yield 或者跑完函數。
+   
+   所以 function1 適合處理那些需要等待的操作，像是打API。以及管理整個應用中的非同步流程的操作。
+
+2. 可以。 function2 call AbortController 的 abort 方法，可以停止 function1，停止 AbortController 相關的請求。
+
+3. 依照單一職責原則和 DRY 原則，可以把 AbortController 封裝在一個自定義的 utility 函數，並且可以重用，假如未來 AbortController 的邏輯越來越複雜，就可以只改動獨立出來的地方，而不用每一個使用到 AbortController 的地方都要改。
